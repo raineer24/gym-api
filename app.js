@@ -5,6 +5,7 @@ const log = require('color-logs')(true, true, __filename);
 
 const config = require('./config/config');
 
+
 const SwaggerParser = require('swagger-parser');
 const SwaggerExpress = require('swagger-express-mw');
 const SwaggerUi = require('swagger-tools/middleware/swagger-ui');
@@ -17,9 +18,21 @@ SwaggerParser.validate(config.swaggerFile)
     .catch((err) => {
         log.info('Swagger Error:', err);
     });
-
+// Initialise swagger definition
+SwaggerParser.bundle(config.swaggerFile)
+    .then((api) => {
+        const swaggerConfig = {
+            appRoot: __dirname,
+            swagger: api,
+            swaggerSecurityHandlers: {
+                userSecurity: authenticate,
+                roles: authorize,
+            },
+        };
 
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(config.env.port, () => {
+    log.info(`Server started on ${config.env.port}`);
+});
