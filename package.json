@@ -1,0 +1,24 @@
+{
+  "name": "mgmt-gym-api",
+  "version": "1.0.0",
+  "description": "Gym management api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "color-logs": "^0.6.1",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "gulp-nodemon": "^2.2.1",
+    "mysql": "^2.16.0",
+    "yargs": "^12.0.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-shell": "^0.6.5"
+  }
+}
